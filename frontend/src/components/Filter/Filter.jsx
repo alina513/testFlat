@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchFlats } from '../../redux/operations';
+import {Wrapper, Input, Select, Button} from './Filter.styled'
 
 export const FlatsFilter = () => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export const FlatsFilter = () => {
   const [priceMax, setPriceMax] = useState('');
   const [rooms, setRooms] = useState('');
 
-  // Під час першого рендерингу отримуємо всі квартири
+
   useEffect(() => {
     dispatch(fetchFlats({}));
   }, [dispatch]);
@@ -23,33 +24,30 @@ export const FlatsFilter = () => {
     setPriceMin('');
     setPriceMax('');
     setRooms('');
-    dispatch(fetchFlats({})); // Отримуємо всі квартири
+    dispatch(fetchFlats({})); 
   };
 
   return (
-    <div>
-      <div>
+      <Wrapper>
         <label>
-          Min Price:
-          <input
+          Мінімальна ціна:
+          <Input
             type="number"
             value={priceMin}
             onChange={e => setPriceMin(e.target.value)}
-            placeholder="Enter min price"
           />
         </label>
         <label>
-          Max Price:
-          <input
+          Максимальна ціна:
+          <Input
             type="number"
             value={priceMax}
             onChange={e => setPriceMax(e.target.value)}
-            placeholder="Enter max price"
           />
         </label>
         <label>
-          Rooms:
-          <select
+          Кімнат:
+          <Select
             value={rooms}
             onChange={e => setRooms(e.target.value)}
           >
@@ -57,11 +55,10 @@ export const FlatsFilter = () => {
             <option value="1">1 Room</option>
             <option value="2">2 Rooms</option>
             <option value="3">3 Rooms</option>
-          </select>
+          </Select>
         </label>
-        <button onClick={handleFilter}>Search</button>
-        <button onClick={handleResetFilters}>Reset Filters</button>
-      </div>
-    </div>
+        <Button onClick={handleFilter}>Пошук</Button>
+        <Button onClick={handleResetFilters}>Очистити фільтр</Button>
+      </Wrapper>
   );
 };

@@ -1,11 +1,59 @@
+import { deleteFlat } from "../../redux/operations";
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from "react";
+import { ModalGeneral } from "../Modal/Modal";
+import { FlatForm } from "../Form/Form";
+import {useFlatsState} from '../../redux/selectors';
+import flatImage from '../../assets/flat.jpg';
+import { Container,Title, Description, General, Wrapper, Button } from "./Flat.styled";
+
 export const Flat = ({value}) => {
-    const {title, description, rooms, photos} = value
+    const {title, description, rooms, photos, _id, price} = value;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const {updateStatus} = useFlatsState();
+    const dispatch = useDispatch();
+    const  handleDeleteFlat = ()=>{
+        dispatch(deleteFlat(_id))
+    }
+    const openEditModal = () => {
+        setIsModalOpen(true)
+    }
+
+    const defaultInitialValues = 
+{ title: title || '',
+              description: description || '',
+              price: price || 0,
+              rooms: rooms || 1
+            }
+const isEditForm = true;
+useEffect(() => {
+    // Закриваємо модальне вікно після успішного оновлення
+    if (updateStatus === 'success') {
+        setIsModalOpen(false);
+    }
+}, [updateStatus]);
+
+
     return(
-        <li>
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <p>{rooms}</p>
-            <img width = "20" alt="flat" src = {photos[0]}/>
-        </li>
+        <>
+        <Container>
+            <Title>{title}</Title>
+            <Wrapper>
+            <img width = "200" alt="flat" src = {photos ? photos : flatImage}/>
+            <div>
+            <Description>{description}</Description>
+            <General>Кімнат:{rooms}</General>
+            <General>Вартість:{price} грн</General>
+            </div>
+            </Wrapper>
+            <Button onClick={handleDeleteFlat}>Видалити</Button>
+            <Button onClick={openEditModal}>Редагувати</Button>
+        </Container>
+        <ModalGeneral isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+<FlatForm initialValues={defaultInitialValues} isEditMode={isEditForm} id = {_id}/>
+{/* <PhotoUploader flatId = {_id}/> */}
+        </ModalGeneral>
+        </>
+        
     )
 }

@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchFlats, addFlat, deleteFlat } from './operations';
+import { fetchFlats, addFlat, deleteFlat, updateFlat } from './operations';
 
 const flatsInitialState = {
   items: [],
   isLoading: false,
   error: null,
+  updateStatus: null,
 };
 
 const flatsSlice = createSlice({
@@ -43,13 +44,31 @@ const flatsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items = state.items.filter(
-          contact => contact.id !== action.payload.id
+          flat => flat._id !== action.payload._id
         );
       })
       .addCase(deleteFlat.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      });
+      })
+      .addCase(updateFlat.pending, state => {
+        state.updateStatus = 'loading';
+        state.isLoading = true;
+      })
+      .addCase(updateFlat.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.updateStatus = 'success';
+        const index = state.items.findIndex(flat => flat._id === action.payload._id);
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+      })
+      .addCase(updateFlat.rejected, (state, action) => {
+        state.updateStatus = 'error';
+        state.isLoading = false;
+        state.error = action.payload;
+      });;
   },
 });
 

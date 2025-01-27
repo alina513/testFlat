@@ -24,9 +24,10 @@ const FlatsSchema = new Schema(
       enum: [1, 2, 3],
     },
     photos: {
-      type: [String],
-      default: [],
+      type: String,
+      default: "../uploads/default.jpg",
     },
+
   },
   { versionKey: false, timestamps: true }
 );
@@ -40,7 +41,6 @@ const createFlatSchema = Joi.object({
   description: Joi.string().required(),
   price: Joi.number().required(),
   rooms: Joi.number().required(),
-  photos: Joi.array(),
 });
 
 const updateFlateSchema = Joi.object({
@@ -48,7 +48,6 @@ const updateFlateSchema = Joi.object({
   description: Joi.string(),
   price: Joi.number(),
   rooms: Joi.number(),
-  photos: Joi.array(),
 });
 
 const schemas = { createFlatSchema, updateFlateSchema };
