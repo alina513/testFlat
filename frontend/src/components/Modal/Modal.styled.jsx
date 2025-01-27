@@ -28,18 +28,9 @@ export const ModalContent = styled.div`
   position: relative;
   margin: 20px;
   padding: 10px;
-  width: 1370px; 
-  overflow: auto; 
+  width: 1370px;
+  overflow: auto;
   background-color: #ffffff;
-  // transform: translateY(-50px);
-  // transition: opacity 0.3s, transform 0.3s;
-  // background: linear-gradient(135deg, #b0f3f1, #76b852);
-  // border-radius: 20px;
-  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  // transition: transform 0.2s ease, box-shadow 0.2s ease;
-  // &:hover {
-  //   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-  // }
 `;
 
 export const CloseBtn = styled.button`

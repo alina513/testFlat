@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = "http://localhost:3000/api";
 
 export const fetchFlats = createAsyncThunk(
-  'flats/fetchFlats',
+  "flats/fetchFlats",
   async ({ priceMin, priceMax, rooms }, thunkAPI) => {
     try {
       const params = {};
@@ -12,7 +12,7 @@ export const fetchFlats = createAsyncThunk(
       if (priceMax) params.priceMax = priceMax;
       if (rooms) params.rooms = rooms;
 
-      const response = await axios.get('/flats', { params });
+      const response = await axios.get("/flats", { params });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -21,10 +21,15 @@ export const fetchFlats = createAsyncThunk(
 );
 
 export const addFlat = createAsyncThunk(
-  'flats/addflats',
-  async ({title, description, price, rooms}, thunkAPI) => {
+  "flats/addflats",
+  async ({ title, description, price, rooms }, thunkAPI) => {
     try {
-      const response = await axios.post('/flats', {title, description, price, rooms});
+      const response = await axios.post("/flats", {
+        title,
+        description,
+        price,
+        rooms,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -33,7 +38,7 @@ export const addFlat = createAsyncThunk(
 );
 
 export const deleteFlat = createAsyncThunk(
-  'flats/deleteFlats',
+  "flats/deleteFlats",
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/flats/${id}`);
@@ -45,7 +50,7 @@ export const deleteFlat = createAsyncThunk(
 );
 
 export const updateFlat = createAsyncThunk(
-  'flats/updateFlat',
+  "flats/updateFlat",
   async ({ id, ...fields }, thunkAPI) => {
     try {
       const response = await axios.put(`/flats/${id}`, fields);
@@ -55,7 +60,6 @@ export const updateFlat = createAsyncThunk(
     }
   }
 );
-
 
 export const updateFlatPhoto = async (flatId, file) => {
   const formData = new FormData();

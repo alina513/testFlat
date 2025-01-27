@@ -19,18 +19,20 @@ export const FormWrapper = styled(Form)`
 `;
 
 export const Button = styled.button`
-color: #ffffff;
-background-color: #124a1e;
-padding: 10px;
-border-radius: 5px;
-margin-top: 10px;
- &:hover , &:focus{
- color: #85aa9f;
-background-color: #bfdbc5;}
-`
+  color: #ffffff;
+  background-color: #124a1e;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  &:hover,
+  &:focus {
+    color: #85aa9f;
+    background-color: #bfdbc5;
+  }
+`;
 
 export const Input = styled(Field)`
-padding: 10px;
-border-radius: 5px;
-border: 2px solid #124a1e;
-`
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #124a1e;
+`;

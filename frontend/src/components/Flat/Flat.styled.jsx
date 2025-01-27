@@ -29,7 +29,7 @@ export const Title = styled.h2`
 `;
 
 export const Description = styled.p`
-font-size: 14px;
+  font-size: 14px;
   margin-bottom: 10px;
 `;
 
@@ -40,15 +40,18 @@ export const General = styled.p`
 `;
 
 export const Wrapper = styled.div`
-display: flex;
-gap: 8px`
+  display: flex;
+  gap: 8px;
+`;
 
 export const Button = styled.button`
-color: #ffffff;
-background-color: #124a1e;
-padding: 5px;
-border-radius: 5px;
- &:hover , &:focus{
- color: #85aa9f;
-background-color: #bfdbc5;}
-`
+  color: #ffffff;
+  background-color: #124a1e;
+  padding: 5px;
+  border-radius: 5px;
+  &:hover,
+  &:focus {
+    color: #85aa9f;
+    background-color: #bfdbc5;
+  }
+`;

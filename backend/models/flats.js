@@ -23,11 +23,6 @@ const FlatsSchema = new Schema(
       required: [true, "Number of rooms is required"],
       enum: [1, 2, 3],
     },
-    photos: {
-      type: String,
-      default: "../uploads/default.jpg",
-    },
-
   },
   { versionKey: false, timestamps: true }
 );

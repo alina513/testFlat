@@ -9,6 +9,7 @@ export const useFlatsState = () => {
   return {
     error,
     loading,
-    flats, updateStatus
+    flats,
+    updateStatus,
   };
 };
