@@ -6,9 +6,11 @@ import { addFlat, updateFlat } from "../../redux/operations";
 
 const flatSchema = Yup.object().shape({
   title: Yup.string()
+    .trim()
     .max(90, "Заголовок має бути до 90 символів")
     .required("Заголовок є обовʼязковим"),
   description: Yup.string()
+    .trim()
     .max(335, "Опис має бути до 335 символів")
     .required("Опис є обовʼязковим"),
   price: Yup.number()

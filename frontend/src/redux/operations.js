@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-hot-toast";
 
 // axios.defaults.baseURL = "http://localhost:3000/api";
 axios.defaults.baseURL = "https://testflat-backend.onrender.com/api";
@@ -16,6 +17,7 @@ export const fetchFlats = createAsyncThunk(
       const response = await axios.get("/flats", { params });
       return response.data;
     } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -33,6 +35,7 @@ export const addFlat = createAsyncThunk(
       });
       return response.data;
     } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -45,6 +48,7 @@ export const deleteFlat = createAsyncThunk(
       const response = await axios.delete(`/flats/${id}`);
       return response.data;
     } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -57,23 +61,8 @@ export const updateFlat = createAsyncThunk(
       const response = await axios.put(`/flats/${id}`, fields);
       return response.data;
     } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
-
-export const updateFlatPhoto = async (flatId, file) => {
-  const formData = new FormData();
-  formData.append("photo", file);
-
-  try {
-    const response = await axios.put(`/api/flats/${flatId}/photo`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    console.log("Photo updated:", response.data.photo);
-  } catch (error) {
-    console.error("Error updating photo:", error.response.data.message);
-  }
-};
