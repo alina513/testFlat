@@ -60,5 +60,4 @@ module.exports = {
   createFlat: ctrlWrapper(createFlat),
   deleteFlate: ctrlWrapper(deleteFlate),
   updateFlate: ctrlWrapper(updateFlate),
-  updateFlatPhoto: ctrlWrapper(updateFlatPhoto),
 };
