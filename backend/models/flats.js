@@ -8,6 +8,7 @@ const FlatsSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
       maxlength: 90,
+      unique: true,
     },
     description: {
       type: String,
