@@ -14,11 +14,10 @@ function App() {
       <FlatForm initialValues={defaultInitialValues} isEditMode={isEditTrue} />
       <FlatsFilter />
       {loading && !error && <Loader />}
-      {flats.length !== 0 ? (
-        <FlatsList />
-      ) : (
+      {!loading && !error && flats.length === 0 && (
         <p>Квартир, які відповідають умовам не знайдено</p>
       )}
+      {flats.length !== 0 && !loading && !error && <FlatsList />}
     </>
   );
 }
