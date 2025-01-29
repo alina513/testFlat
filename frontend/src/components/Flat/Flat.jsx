@@ -19,9 +19,12 @@ export const Flat = ({ value }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { updateStatus } = useFlatsState();
   const dispatch = useDispatch();
+  const isEditForm = true;
+
   const handleDeleteFlat = () => {
     dispatch(deleteFlat(_id));
   };
+
   const openEditModal = () => {
     setIsModalOpen(true);
   };
@@ -32,7 +35,7 @@ export const Flat = ({ value }) => {
     price: price || 0,
     rooms: rooms || 1,
   };
-  const isEditForm = true;
+
   useEffect(() => {
     if (updateStatus === "success") {
       setIsModalOpen(false);

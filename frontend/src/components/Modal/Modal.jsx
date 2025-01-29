@@ -7,7 +7,6 @@ export const ModalGeneral = ({ isOpen, onClose, children }) => {
     return null;
   }
   return ReactDOM.createPortal(
-    <>
       <Modal>
         <ModalWrapper
           onClick={(event) => {
@@ -23,8 +22,7 @@ export const ModalGeneral = ({ isOpen, onClose, children }) => {
             {children}
           </ModalContent>
         </ModalWrapper>
-      </Modal>
-    </>,
+      </Modal>,
     document.getElementById("modal")
   );
 };
