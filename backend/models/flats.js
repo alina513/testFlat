@@ -8,7 +8,6 @@ const FlatsSchema = new Schema(
       type: String,
       required: [true, "Title is required"],
       maxlength: 90,
-      unique: true,
     },
     description: {
       type: String,
@@ -28,7 +27,6 @@ const FlatsSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
-FlatsSchema.post("save", handleMongooseError);
 
 const Flat = model("flates", FlatsSchema);
 
