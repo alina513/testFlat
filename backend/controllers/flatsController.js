@@ -28,10 +28,6 @@ const createFlat = async (req, res) => {
 };
 
 const updateFlate = async (req, res) => {
-  console.log(req);
-  if (Object.keys(req.body).length === 0) {
-    throw HttpError(400, "Body must have at least one field");
-  }
   const { id } = req.params;
   const result = await Flat.findOneAndUpdate(
     {
