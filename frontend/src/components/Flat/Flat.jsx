@@ -15,7 +15,9 @@ import {
 } from "./Flat.styled";
 
 export const Flat = ({ value }) => {
-  const { title, description, rooms, _id, price } = value;
+  const { title, description, rooms, _id, price, photoURL } = value;
+  const baseUrl = "https://testflat-backend.onrender.com";
+  const fullPhotoUrl = `${baseUrl}/${photoURL}`
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { updateStatus } = useFlatsState();
   const dispatch = useDispatch();
@@ -47,7 +49,7 @@ export const Flat = ({ value }) => {
       <Container>
         <Title>{title}</Title>
         <Wrapper>
-          <img width="100" alt="flat" src={flatImage} />
+          <img width="100" alt="flat" src={photoURL ? fullPhotoUrl : flatImage} />
           <div>
             <Description>{description}</Description>
             <General>Кімнат:{rooms}</General>
