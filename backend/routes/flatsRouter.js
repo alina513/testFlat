@@ -2,6 +2,7 @@ const express = require("express");
 const { schemas } = require("../models/flats.js");
 const validateBody = require("../helpers/validateBody.js");
 const isValidId = require("../helpers/isValidId.js");
+const upload = require("../middlewares/upload.js")
 
 const ctrl = require("../controllers/flatsController.js");
 const flatsRouter = express.Router();
@@ -16,6 +17,12 @@ flatsRouter.put(
   isValidId,
   validateBody(schemas.updateFlateSchema),
   ctrl.updateFlate
+);
+flatsRouter.patch(
+  "/:id",
+  isValidId,
+  upload.single("flatPhotos"),
+  ctrl.updatePhoto
 );
 
 module.exports = flatsRouter;

@@ -22,6 +22,9 @@ const FlatsSchema = new Schema(
       required: [true, "Number of rooms is required"],
       enum: [1, 2, 3],
     },
+    photoURL: {
+      type: String,
+    }
   },
   { versionKey: false, timestamps: true }
 );
