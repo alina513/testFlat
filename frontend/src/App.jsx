@@ -1,24 +1,22 @@
-import { FlatsList } from "./components/FlatsList/FlatList";
-import { FlatsFilter } from "./components/Filter/Filter";
-import { useFlatsState } from "./redux/selectors";
-import { FlatForm } from "./components/Form/Form";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router";
 import { Loader } from "./components/Loader";
-import { Toaster } from "react-hot-toast";
-import { isEditTrue, defaultInitialValues } from "./helpers/propToForm";
+import { RoutesEnum } from "./contants/RoutesEnum.jsx";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const FlatesPage = lazy(() => import("./pages/FlatsPage"));
+const Layout = lazy(() => import("./components/Layuot/Layout.jsx"));
 
 function App() {
-  const { flats, loading, error } = useFlatsState();
   return (
-    <>
-      <Toaster />
-      <FlatForm initialValues={defaultInitialValues} isEditMode={isEditTrue} />
-      <FlatsFilter />
-      {loading && !error && <Loader />}
-      {!loading && !error && flats.length === 0 && (
-        <p>Квартир, які відповідають умовам не знайдено</p>
-      )}
-      {flats.length !== 0 && !loading && !error && <FlatsList />}
-    </>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path={RoutesEnum.HOME} element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path={RoutesEnum.FLATS} element={<FlatesPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
