@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "SecondFont";
+  src: url("./fonts/DancingScript-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,7 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #ebd9c6, #ffffff);
+  background: linear-gradient(135deg, #f8f2ec, #eafaf1);
   color: #040404;
   font-weight: normal;
 }
@@ -41,6 +48,6 @@ img {
   display: block;
 }
 
-button {
+button, a {
   cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchFlats } from "../../redux/operations";
-import { Wrapper, Input, Select, Button } from "./Filter.styled";
+import { Wrapper, Input, Select, Button, Container } from "./Filter.styled";
 
 export const FlatsFilter = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ export const FlatsFilter = () => {
 
   return (
     <Wrapper>
+      <Container>
       <label>
         Мінімальна ціна:
         <Input
@@ -51,9 +52,12 @@ export const FlatsFilter = () => {
           <option value="2">2 Rooms</option>
           <option value="3">3 Rooms</option>
         </Select>
-      </label>
+        </label>
+      </Container>
+      <Container>
       <Button onClick={handleFilter}>Пошук</Button>
-      <Button onClick={handleResetFilters}>Очистити фільтр</Button>
+        <Button onClick={handleResetFilters}>Очистити фільтр</Button>
+        </Container>
     </Wrapper>
   );
 };

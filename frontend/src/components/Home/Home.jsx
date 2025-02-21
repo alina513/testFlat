@@ -69,7 +69,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: -50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.2 }}
-                  style={{ fontSize: "3rem", color: "#fff" }}
+                  style={{ fontSize: "3rem", color: " #f8f2ec" }}
                 >
                   {slide.title}
                 </motion.h1>
@@ -77,7 +77,7 @@ const Home = () => {
                   initial={{ opacity: 0, x: -100 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, delay: 0.4 }}
-                  style={{ fontSize: "1.5rem", color: "#fff" }}
+                  style={{ fontSize: "1.5rem", color: " #f8f2ec" }}
                 >
                   {slide.description}
                 </motion.p>

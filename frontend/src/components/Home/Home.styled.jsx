@@ -51,7 +51,9 @@ export const Controls = styled.div`
 
 export const ControlButton = styled.button`
   padding: 12px 30px;
-  background-color: #fff;
+  width: 136px;
+  background-color: #f8f2ec;
+  color: #124a1e;
   border: none;
   border-radius: 8px;
   cursor: pointer;

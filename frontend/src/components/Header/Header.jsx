@@ -1,4 +1,4 @@
-import { List, Wrapper, LinkNav, Container } from "./Header.styled";
+import { List, Wrapper, LinkNav, Container, Svg, Logo } from "./Header.styled";
 import { getRoutes } from "../../contants/routes";
 
 const Header = () => {
@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <nav>
+        <Logo><Svg width='20' height='20'><use xlinkHref="/sprite.svg#icon-home"></use></Svg>Appart</Logo>
           <List>
             {routes.map((route, index) => (
               <li key={index}>
@@ -14,7 +14,6 @@ const Header = () => {
               </li>
             ))}
           </List>
-        </nav>
       </Wrapper>
     </Container>
   );
