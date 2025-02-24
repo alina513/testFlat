@@ -55,6 +55,13 @@ const updateFlateSchema = Joi.object({
   rooms: Joi.number(),
 });
 
-const schemas = { createFlatSchema, updateFlateSchema };
+const contactFormSchema = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  phone: Joi.string().required(),
+  message: Joi.string().optional(),
+});
+
+const schemas = { createFlatSchema, updateFlateSchema, contactFormSchema };
 
 module.exports = { Flat, schemas };
