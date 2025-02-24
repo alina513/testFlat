@@ -91,22 +91,43 @@ const updatePhoto = async(req, res) => {
       const { id } = req.params; 
       const { name, email, phone, message } = req.body;
   
-     
-      const flat = await Flat.findById(id);
-      if (!flat) {
+      const updatedFlat = await Flat.findByIdAndUpdate(
+        id,
+        { $push: { contacts: { name, email, phone, message } } }, // Додаємо новий об'єкт у масив `contacts`
+        { new: true, runValidators: true } // Повертає оновлений документ, вмикає валідацію схемою
+      );
+  
+      if (!updatedFlat) {
         return res.status(404).json({ message: "Квартира не знайдена" });
       }
   
-      flat.contacts.push({ name, email, phone, message });
-  
-  
-      await flat.save();
-  
-      res.status(201).json({ message: "Заявка додана успішно!" });
+      res.status(201).json({ message: "Заявка додана успішно!", updatedFlat });
     } catch (error) {
       res.status(500).json({ message: "Помилка сервера", error });
     }
   };
+
+  // export const addContactForm = async (req, res) => {
+  //   try {
+  //     const { id } = req.params; 
+  //     const { name, email, phone, message } = req.body;
+  
+     
+  //     const flat = await Flat.findById(id);
+  //     if (!flat) {
+  //       return res.status(404).json({ message: "Квартира не знайдена" });
+  //     }
+  
+  //     flat.contacts.push({ name, email, phone, message });
+  
+  
+  //     await flat.save();
+  
+  //     res.status(201).json({ message: "Заявка додана успішно!" });
+  //   } catch (error) {
+  //     res.status(500).json({ message: "Помилка сервера", error });
+  //   }
+  // };
 
 module.exports = {
   getAllFlats: ctrlWrapper(getAllFlats),
