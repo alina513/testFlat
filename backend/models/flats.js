@@ -2,9 +2,9 @@ const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
 const formSchema = new Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
+  name: { type: String },
+  email: { type: String },
+  phone: { type: String },
   message: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
@@ -56,10 +56,10 @@ const updateFlateSchema = Joi.object({
 });
 
 const contactFormSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().required(),
-  message: Joi.string().optional(),
+  name: Joi.string(),
+  email: Joi.string().email(),
+  phone: Joi.string(),
+  message: Joi.string(),
 });
 
 const schemas = { createFlatSchema, updateFlateSchema, contactFormSchema };
