@@ -86,6 +86,28 @@ const updatePhoto = async(req, res) => {
       photoURL,})
   }
 
+  export const addContactForm = async (req, res) => {
+    try {
+      const { id } = req.params; 
+      const { name, email, phone, message } = req.body;
+  
+     
+      const flat = await Flat.findById(id);
+      if (!flat) {
+        return res.status(404).json({ message: "Квартира не знайдена" });
+      }
+  
+      flat.contacts.push({ name, email, phone, message });
+  
+  
+      await flat.save();
+  
+      res.status(201).json({ message: "Заявка додана успішно!" });
+    } catch (error) {
+      res.status(500).json({ message: "Помилка сервера", error });
+    }
+  };
+
 module.exports = {
   getAllFlats: ctrlWrapper(getAllFlats),
   createFlat: ctrlWrapper(createFlat),
@@ -93,4 +115,5 @@ module.exports = {
   updateFlate: ctrlWrapper(updateFlate),
   updatePhoto: ctrlWrapper(updatePhoto),
   getOneFlateById: ctrlWrapper(getOneFlateById),
+  addContactForm: ctrlWrapper(addContactForm),
 };

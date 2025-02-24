@@ -12,6 +12,8 @@ flatsRouter.get("/:id", ctrl.getOneFlateById);
 
 flatsRouter.post("/", validateBody(schemas.createFlatSchema), ctrl.createFlat);
 
+flatsRouter.post("/:id/contact", isValidId, ctrl.addContactForm);
+
 flatsRouter.delete("/:id", isValidId, ctrl.deleteFlate);
 
 flatsRouter.put(

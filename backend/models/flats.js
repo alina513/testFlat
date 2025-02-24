@@ -1,6 +1,14 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
+const formSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  message: { type: String },
+  createdAt: { type: Date, default: Date.now },
+});
+
 const FlatsSchema = new Schema(
   {
     title: {
@@ -24,7 +32,8 @@ const FlatsSchema = new Schema(
     },
     photoURL: {
       type: String,
-    }
+    },
+    contacts: [formSchema],
   },
   { versionKey: false, timestamps: true }
 );
