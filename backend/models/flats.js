@@ -26,12 +26,13 @@ const FlatsSchema = new Schema(
     photoURL: {
       type: String,
     },
-    contacts: [
+    contacts:  [
       {
-        name: { type: String}, 
-        email: { type: String }, 
-        phone: { type: String }, 
+        name: { type: String, required: true }, 
+        email: { type: String, required: true }, 
+        phone: { type: String, required: true }, 
         message: { type: String }, 
+        createdAt: { type: Date, default: Date.now }, 
       },
     ],
   },

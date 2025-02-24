@@ -85,25 +85,33 @@ const updatePhoto = async(req, res) => {
   res.json({
       photoURL,})
   }
-
-  export const addContactForm = async (req, res) => {
+  const addContactForm = async (req, res) => {
     try {
-      const { id } = req.params; 
+      const { id } = req.params;
       const { name, email, phone, message } = req.body;
   
-      const updatedFlat = await Flat.findOneAndUpdate(
-        {
-          _id: id,
-        },
-        { $push: { contacts: { name, email, phone, message } } }, 
-        { new: true} 
-      );
+      const flat = await Flat.findById(id);
   
-      res.status(201).json({ updatedFlat });
+      if (!flat) {
+        return res.status(404).json({ message: "Квартира не знайдена" });
+      }
+  
+      // Переконуємось, що поле contacts існує (або створюємо його як масив)
+      if (!flat.contacts) {
+        flat.contacts = [];
+      }
+  
+      // Додаємо новий контакт
+      flat.contacts.push({ name, email, phone, message, createdAt: new Date() });
+  
+      await flat.save(); // Зберігаємо зміни
+  
+      res.status(201).json({ message: "Контакт успішно додано!", flat });
     } catch (error) {
-      res.status(500).json({ message: "Помилка сервера", error });
+      res.status(500).json({ message: "Помилка сервера", error: error.message });
     }
   };
+  
 
 module.exports = {
   getAllFlats: ctrlWrapper(getAllFlats),
