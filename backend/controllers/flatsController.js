@@ -24,6 +24,17 @@ const getAllFlats = async (req, res) => {
   res.json(result);
 };
 
+
+const getOneFlateById = async (req, res) => {
+  const { id } = req.params;
+  const result = await Flat.findOne({
+    _id: id});
+  if (!result) {
+    throw HttpError(404);
+  }
+  res.json(result);
+};
+
 const createFlat = async (req, res) => {
   const result = await Flat.create({ ...req.body });
   if (!result) {
@@ -81,4 +92,5 @@ module.exports = {
   deleteFlate: ctrlWrapper(deleteFlate),
   updateFlate: ctrlWrapper(updateFlate),
   updatePhoto: ctrlWrapper(updatePhoto),
+  getOneFlateById: ctrlWrapper(getOneFlateById),
 };

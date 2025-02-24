@@ -7,6 +7,8 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const FlatesPage = lazy(() => import("./pages/FlatsPage"));
 const Layout = lazy(() => import("./components/Layuot/Layout.jsx"));
 const RieltorPage = lazy(() => import("./pages/RieltorPage.jsx"));
+const FavoritePage = lazy(() => import("./pages/FavotitePage.jsx"));
+const FlatById = lazy(() => import("./pages/FlatById.jsx"));
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path={RoutesEnum.FLATS} element={<FlatesPage />} />
            <Route path={RoutesEnum.RIELTOR} element={<RieltorPage />} />
+           <Route path={RoutesEnum.FAVORITES} element={<FavoritePage />} />
+           <Route path={RoutesEnum.FLAT_BY_ID} element={<FlatById />} />
         </Route>
       </Routes>
     </Suspense>

@@ -58,3 +58,13 @@ export const Button = styled.button`
     background-color: #bfdbc5;
   }
 `;
+export const Link = styled.a`
+  color: #ffffff;
+  background-color: #124a1e;
+  padding: 5px;
+  border-radius: 5px;
+  &:hover,
+  &:focus {
+    color: #85aa9f;
+    background-color: #bfdbc5;
+  }`

@@ -8,6 +8,8 @@ const ctrl = require("../controllers/flatsController.js");
 const flatsRouter = express.Router();
 flatsRouter.get("/", ctrl.getAllFlats);
 
+flatsRouter.get("/:id", ctrl.getOneFlateById);
+
 flatsRouter.post("/", validateBody(schemas.createFlatSchema), ctrl.createFlat);
 
 flatsRouter.delete("/:id", isValidId, ctrl.deleteFlate);

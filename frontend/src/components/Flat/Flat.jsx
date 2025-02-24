@@ -11,7 +11,7 @@ import {
   Description,
   General,
   Wrapper,
-  Button,
+  Button
 } from "./Flat.styled";
 
 export const Flat = ({ value }) => {

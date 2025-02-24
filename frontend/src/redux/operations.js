@@ -23,6 +23,19 @@ export const fetchFlats = createAsyncThunk(
   }
 );
 
+export const fetchFlatById = createAsyncThunk(
+  "flats/fetchFlatById",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios.get(`/flats/${id}`);
+      return response.data;
+    } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
 export const addFlat = createAsyncThunk(
   "flats/addflats",
   async ({ title, description, price, rooms }, thunkAPI) => {
