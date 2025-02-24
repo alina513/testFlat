@@ -28,11 +28,10 @@ const FlatsSchema = new Schema(
     },
     contacts: [
       {
-        name: { type: String, required: true }, 
-        email: { type: String, required: true }, 
-        phone: { type: String, required: true }, 
+        name: { type: String}, 
+        email: { type: String }, 
+        phone: { type: String }, 
         message: { type: String }, 
-        createdAt: { type: Date, default: Date.now }, 
       },
     ],
   },
@@ -56,13 +55,7 @@ const updateFlateSchema = Joi.object({
   rooms: Joi.number(),
 });
 
-const contactFormSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().required(),
-  message: Joi.string(),
-});
 
-const schemas = { createFlatSchema, updateFlateSchema, contactFormSchema };
+const schemas = { createFlatSchema, updateFlateSchema };
 
 module.exports = { Flat, schemas };
