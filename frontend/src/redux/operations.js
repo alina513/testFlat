@@ -79,3 +79,17 @@ export const updateFlat = createAsyncThunk(
     }
   }
 );
+
+export const addContactForm = createAsyncThunk(
+  "flats/addContactForm",
+  async ({ id, ...fields }, thunkAPI) => {
+    try {
+      const response = await axios.post(`/flats/${id}/contact`, fields
+      );
+      return response.data;
+    } catch (e) {
+      toast.error("Виникла помилка. Спробуй перезавантажити.");
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);

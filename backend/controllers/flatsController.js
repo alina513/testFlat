@@ -95,16 +95,12 @@ const updatePhoto = async(req, res) => {
       if (!flat) {
         return res.status(404).json({ message: "Квартира не знайдена" });
       }
-  
-      // Переконуємось, що поле contacts існує (або створюємо його як масив)
       if (!flat.contacts) {
         flat.contacts = [];
       }
-  
-      // Додаємо новий контакт
       flat.contacts.push({ name, email, phone, message, createdAt: new Date() });
   
-      await flat.save(); // Зберігаємо зміни
+      await flat.save(); 
   
       res.status(201).json({ message: "Контакт успішно додано!", flat });
     } catch (error) {

@@ -1,40 +1,25 @@
 import { Formik, Form, Field } from 'formik';
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addContactForm } from '../../redux/operations';
+import { useParams } from 'react-router';
+
 
 export const ContactForm = ()=> {
-    // const dispatch = useDispatch();
-    // const { id } = useParams();
+    const dispatch = useDispatch();
+    const { id } = useParams();
 
    
   
-    // const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    //   try {
-    //     const response = await fetch(`https://your-backend.com/api/flats/${id}/contact`, {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify(values),
-    //     });
-  
-    //     if (response.ok) {
-    //       alert("Заявка успішно відправлена!");
-    //       resetForm();
-    //     } else {
-    //       alert("Помилка при відправці заявки.");
-    //     }
-    //   } catch (error) {
-    //     console.error("Помилка:", error);
-    //     alert("Сервер недоступний. Спробуйте пізніше.");
-    //   } finally {
-    //     setSubmitting(false);
-    //   }
-    // };
-
+    const handleSubmit = (values, { setSubmitting, resetForm }) => {
+      dispatch(addContactForm({id, ...values}));
+      setSubmitting(false);
+      resetForm(); 
+    };
 
     return(
         <Formik
        initialValues={{name: '', email: '', phone: '', message: ""  }}
-       onSubmit={()=> console.log("ok")}
+       onSubmit={handleSubmit}
      >
        {({ isSubmitting }) => (
         <Form>

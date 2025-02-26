@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { fetchFlatById } from "../redux/operations";
 import { useFlatsState } from "../redux/selectors";
 import { Loader } from "../components/Loader";
+import { ContactForm } from "../components/ContactForm/ContactForm";
 
 
 export default function FlatById() {
@@ -18,7 +19,7 @@ export default function FlatById() {
   return loading ? <Loader /> : 
   <>
   <h1>{currentFlat?._id}</h1>
-  
+  <ContactForm/>
   </>;
 }
 
