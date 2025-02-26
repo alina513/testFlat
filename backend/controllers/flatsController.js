@@ -88,7 +88,7 @@ const updatePhoto = async(req, res) => {
   const addContactForm = async (req, res) => {
     try {
       const { id } = req.params;
-      const { name, email, phone, message } = req.body;
+      const { name, email, phone,  message = "" } = req.body;
   
       const flat = await Flat.findById(id);
   
