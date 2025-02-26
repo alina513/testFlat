@@ -22,9 +22,8 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = (values, {resetForm }) => {
     dispatch(addContactForm({ id, ...values }));
-    setSubmitting(false);
     resetForm();
   };
 
@@ -59,7 +58,7 @@ export const ContactForm = () => {
             <Field as="textarea" name="message" placeholder="Ваше повідомлення" />
           </label>
 
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit">
             Надіслати
           </button>
         </Form>

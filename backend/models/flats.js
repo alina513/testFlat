@@ -31,7 +31,7 @@ const FlatsSchema = new Schema(
         name: { type: String, required: true }, 
         email: { type: String, required: true }, 
         phone: { type: String, required: true }, 
-        message: { type: String }, 
+        message: { type: String, default: "" }, 
         createdAt: { type: Date, default: Date.now }, 
       },
     ],
@@ -60,7 +60,7 @@ const createContactFlatSchema = Joi.object({
   name: Joi.string().required(), 
    email: Joi.string().required(), 
    phone: Joi.string().required(), 
-   message: Joi.string(), 
+   message: Joi.string().allow(null, ""),
 })
 
 
