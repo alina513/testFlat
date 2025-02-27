@@ -36,6 +36,16 @@ export const Flat = ({ value }) => {
     description: description || "",
     price: price || 0,
     rooms: rooms || 1,
+    petsAllowed: false,
+  heatingType: "",
+  walkInCloset: false,
+  bathrooms: "",
+  airConditioners: "",
+  fullDescription: "",
+  district: "",
+  parkingSpace: false,
+  floor: 0,
+  maxPeople: 0,
   };
 
   useEffect(() => {
