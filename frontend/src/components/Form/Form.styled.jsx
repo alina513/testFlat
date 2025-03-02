@@ -32,13 +32,13 @@ export const Button = styled.button`
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #124a1e;
 `;
- export const  Select = styled.select`
+ export const  Select = styled(Field)`
  `
 
- export const Checkbox = styled.input`
+ export const Checkbox = styled(Field)`
  `

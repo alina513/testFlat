@@ -68,9 +68,10 @@
 // };
 
 
-import { FormWrapper, Button, Input, Select, Checkbox } from "./Form.styled";
+
+import { FormWrapper, Button, Input, Checkbox, Select } from "./Form.styled";
 import { useDispatch } from "react-redux";
-import { Formik, ErrorMessage, Field, Form } from "formik";
+import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { addFlat, updateFlat } from "../../redux/operations";
 
@@ -90,7 +91,7 @@ const flatSchema = Yup.object().shape({
   rooms: Yup.number()
     .oneOf([1, 2, 3], "Кількість кімнат може бути лише 1, 2 або 3")
     .required("Кількість кімнат є обовʼязковою"),
-  petsAllowed: Yup.boolean(),
+    etsAllowed: Yup.boolean(),
   heatingType: Yup.string().oneOf(["газове", "електричне", "центральне"], "Оберіть тип опалення"),
   walkInCloset: Yup.boolean(),
   bathrooms: Yup.number().oneOf([1, 2, 3], "Кількість ванних кімнат може бути лише 1, 2 або 3"),
@@ -110,6 +111,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
       dispatch(updateFlat({ id, ...values }));
     } else {
       dispatch(addFlat(values));
+      console.log(values)
     }
     actions.resetForm();
   };
@@ -120,31 +122,34 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
       validationSchema={flatSchema}
       onSubmit={handleSubmit}
     >
-      {({ isSubmitting }) => (
-        <FormWrapper as={Form}>
-          <label htmlFor="title">Заголовок</label>
-          <Field as={Input} id="title" name="title" />
-          <ErrorMessage name="title" component="div" style={{ color: "red" }} />
+      <FormWrapper>
+        <label htmlFor="title">Заголовок</label>
+        <Input id="title" name="title" />
+        <ErrorMessage name="title" component="div" style={{ color: "red" }} />
 
-          <label htmlFor="description">Опис</label>
-          <Field as={Input} id="description" name="description" />
-          <ErrorMessage name="description" component="div" style={{ color: "red" }} />
+        <label htmlFor="description">Опис</label>
+        <Input id="description" name="description" />
+        <ErrorMessage
+          name="description"
+          component="div"
+          style={{ color: "red" }}
+        />
 
-          <label htmlFor="price">Ціна</label>
-          <Field as={Input} id="price" name="price" />
-          <ErrorMessage name="price" component="div" style={{ color: "red" }} />
+        <label htmlFor="price">Ціна</label>
+        <Input id="price" name="price" />
+        <ErrorMessage name="price" component="div" style={{ color: "red" }} />
 
-          <label htmlFor="rooms">Кількість кімнат</label>
-          <Field as={Input} id="rooms" name="rooms" />
-          <ErrorMessage name="rooms" component="div" style={{ color: "red" }} />
+        <label htmlFor="rooms">Кількість кімнат</label>
+        <Input id="rooms" name="rooms" />
+        <ErrorMessage name="rooms" component="div" style={{ color: "red" }} />
 
-          <label>
+        <label>
             Дозволені тварини
-            <Field type="checkbox" name="petsAllowed" as={Checkbox} />
+            <Checkbox type="checkbox" name="petsAllowed" />
           </label>
 
           <label htmlFor="heatingType">Тип опалення</label>
-          <Field as={Select} id="heatingType" name="heatingType">
+          <Field id="heatingType" name="heatingType" as="select">
             <option value="">Оберіть...</option>
             <option value="газове">Газове</option>
             <option value="електричне">Електричне</option>
@@ -154,11 +159,11 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
 
           <label>
             Гардеробна
-            <Field type="checkbox" name="walkInCloset" as={Checkbox} />
+            <Checkbox name="walkInCloset" type="checkbox" />
           </label>
 
           <label htmlFor="bathrooms">Ванна кімната</label>
-          <Field as={Select} id="bathrooms" name="bathrooms">
+          <Field id="bathrooms" name="bathrooms" as="select">
             <option value="">Оберіть...</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -167,7 +172,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
           <ErrorMessage name="bathrooms" component="div" style={{ color: "red" }} />
 
           <label htmlFor="airConditioners">Кондиціонер</label>
-          <Field as={Select} id="airConditioners" name="airConditioners">
+          <Field id="airConditioners" name="airConditioners" as="select">
             <option value="">Оберіть...</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -176,7 +181,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
           <ErrorMessage name="airConditioners" component="div" style={{ color: "red" }} />
 
           <label htmlFor="district">Район</label>
-          <Field as={Select} id="district" name="district">
+          <Field id="district" name="district" as="select">
             <option value="">Оберіть район...</option>
             <option value="Дарницький">Дарницький</option>
             <option value="Оболонський">Оболонський</option>
@@ -190,22 +195,22 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
 
           <label>
             Паркомісце
-            <Field type="checkbox" name="parkingSpace" as={Checkbox} />
+            <Checkbox type="checkbox" name="parkingSpace"  />
           </label>
 
           <label htmlFor="floor">Поверх</label>
-          <Field as={Input} id="floor" name="floor" />
+          <Input id="floor" name="floor" as='input'/>
           <ErrorMessage name="floor" component="div" style={{ color: "red" }} />
 
           <label htmlFor="maxPeople">Максимальна кількість мешканців</label>
-          <Field as={Input} id="maxPeople" name="maxPeople" />
+          <Input id="maxPeople" name="maxPeople" as='input'/>
           <ErrorMessage name="maxPeople" component="div" style={{ color: "red" }} />
 
-          <Button type="submit" disabled={isSubmitting}>
-            {isEditMode ? "Оновити" : "Додати"}
-          </Button>
-        </FormWrapper>
-      )}
+
+        <Button type="submit">{isEditMode ? "Оновити" : "Додати"}</Button>
+      </FormWrapper>
     </Formik>
   );
 };
+
+
