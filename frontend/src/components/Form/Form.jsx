@@ -91,16 +91,16 @@ const flatSchema = Yup.object().shape({
     .oneOf([1, 2, 3], "Кількість кімнат може бути лише 1, 2 або 3")
     .required("Кількість кімнат є обовʼязковою"),
   animals: Yup.boolean(),
-  heatingType: Yup.string().oneOf(
+  gasEquipment: Yup.string().oneOf(
     ["газове", "електричне", "центральне"],
     "Оберіть тип опалення"
   ),
-  walkInCloset: Yup.boolean(),
-  bathrooms: Yup.number().oneOf(
+  wardrobe: Yup.boolean(),
+  bathroom: Yup.number().oneOf(
     [1, 2, 3],
     "Кількість ванних кімнат може бути лише 1, 2 або 3"
   ),
-  airConditioners: Yup.number().oneOf(
+  airConditioner: Yup.number().oneOf(
     [1, 2, 3],
     "Кількість кондиціонерів може бути лише 1, 2 або 3"
   ),
@@ -116,7 +116,7 @@ const flatSchema = Yup.object().shape({
     ],
     "Оберіть район"
   ),
-  parkingSpace: Yup.boolean(),
+  parking: Yup.boolean(),
   floor: Yup.number(),
   maxPeople: Yup.number(),
 });
@@ -174,46 +174,46 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
           <Checkbox type="checkbox" name="animals" />
         </label>
 
-        <label htmlFor="heatingType">Тип опалення</label>
-        <Field id="heatingType" name="heatingType" as="select">
+        <label htmlFor="gasEquipment">Тип опалення</label>
+        <Field id="gasEquipment" name="gasEquipment" as="select">
           <option value="">Оберіть...</option>
           <option value="газове">Газове</option>
           <option value="електричне">Електричне</option>
           <option value="центральне">Центральне</option>
         </Field>
         <ErrorMessage
-          name="heatingType"
+          name="gasEquipment"
           component="div"
           style={{ color: "red" }}
         />
 
         <label>
           Гардеробна
-          <Checkbox name="walkInCloset" type="checkbox" />
+          <Checkbox name="wardrobe" type="checkbox" />
         </label>
 
-        <label htmlFor="bathrooms">Ванна кімната</label>
-        <Field id="bathrooms" name="bathrooms" as="select">
+        <label htmlFor="bathroom">Ванна кімната</label>
+        <Field id="bathroom" name="bathroom" as="select">
           <option value="">Оберіть...</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </Field>
         <ErrorMessage
-          name="bathrooms"
+          name="bathroom"
           component="div"
           style={{ color: "red" }}
         />
 
-        <label htmlFor="airConditioners">Кондиціонер</label>
-        <Field id="airConditioners" name="airConditioners" as="select">
+        <label htmlFor="airConditioner">Кондиціонер</label>
+        <Field id="airConditioner" name="airConditioner" as="select">
           <option value="">Оберіть...</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
         </Field>
         <ErrorMessage
-          name="airConditioners"
+          name="airConditioner"
           component="div"
           style={{ color: "red" }}
         />
@@ -237,7 +237,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
 
         <label>
           Паркомісце
-          <Checkbox type="checkbox" name="parkingSpace" />
+          <Checkbox type="checkbox" name="parking" />
         </label>
 
         <label htmlFor="floor">Поверх</label>

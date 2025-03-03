@@ -6,7 +6,7 @@ export const defaultInitialValues = {
         rooms:"",
         photoURL:"",
         animals: false, 
-        gasEquipment: "", 
+       gasEquipment: "", 
         wardrobe: false, 
         bathroom: "",
         airConditioner: "", 

@@ -39,43 +39,11 @@ export const fetchFlatById = createAsyncThunk(
 export const addFlat = createAsyncThunk(
   "flats/addflats",
   async (
-    {
-      title,
-      description,
-      fullDescription,
-      price,
-      rooms,
-      photoURL,
-      petsAllowed,
-      heatingType,
-      walkInCloset,
-      bathrooms,
-      airConditioners,
-      district,
-      parkingSpace,
-      floor,
-      maxPeople,
-    },
+    {...fields},
     thunkAPI
   ) => {
     try {
-      const response = await axios.post("/flats", {
-        title,
-        description,
-        fullDescription,
-        price,
-        rooms,
-        photoURL,
-        animals: petsAllowed, 
-        gasEquipment: heatingType, 
-        wardrobe: walkInCloset, 
-        bathroom: bathrooms,
-        airConditioner: airConditioners, 
-        district,
-        parking: parkingSpace, 
-        floor,
-        maxPeople,
-      });
+      const response = await axios.post("/flats", fields);
       return response.data;
     } catch (e) {
       toast.error("Виникла помилка. Спробуй перезавантажити.");
