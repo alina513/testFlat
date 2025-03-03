@@ -4,7 +4,6 @@ export const defaultInitialValues = {
         fullDescription: "",
         price:"",
         rooms:"",
-        photoURL:"",
         animals: false, 
        gasEquipment: "", 
         wardrobe: false, 
