@@ -67,9 +67,9 @@
 //   );
 // };
 
-import { FormWrapper, Button, Input, Checkbox, Select } from "./Form.styled";
+import { FormWrapper, Button, Input, Checkbox } from "./Form.styled";
 import { useDispatch } from "react-redux";
-import { Formik, ErrorMessage, Field, useFormik } from "formik";
+import { Formik, ErrorMessage, Field } from "formik";
 import * as Yup from "yup";
 import { addFlat, updateFlat } from "../../redux/operations";
 
