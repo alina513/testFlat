@@ -38,13 +38,41 @@ export const fetchFlatById = createAsyncThunk(
 
 export const addFlat = createAsyncThunk(
   "flats/addflats",
-  async ({ title, description, price, rooms }, thunkAPI) => {
+  async (
+    {
+      title,
+      description,
+      price,
+      rooms,
+      animals,
+      gasEquipment,
+      wardrobe,
+      bathroom,
+      airConditioner,
+      fullDescription,
+      district,
+      parking,
+      floor,
+      maxPeople,
+    },
+    thunkAPI
+  ) => {
     try {
       const response = await axios.post("/flats", {
         title,
         description,
         price,
         rooms,
+        animals,
+        gasEquipment,
+        wardrobe,
+        bathroom,
+        airConditioner,
+        fullDescription,
+        district,
+        parking,
+        floor,
+        maxPeople,
       });
       return response.data;
     } catch (e) {
@@ -84,8 +112,7 @@ export const addContactForm = createAsyncThunk(
   "flats/addContactForm",
   async ({ id, ...fields }, thunkAPI) => {
     try {
-      const response = await axios.post(`/flats/${id}/contact`, fields
-      );
+      const response = await axios.post(`/flats/${id}/contact`, fields);
       return response.data;
     } catch (e) {
       toast.error("Виникла помилка. Спробуй перезавантажити.");

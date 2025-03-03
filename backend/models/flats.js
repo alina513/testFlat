@@ -5,6 +5,7 @@ const FlatsSchema = new Schema(
   {
     title: { type: String, required: [true, "Title is required"], maxlength: 90 },
     description: { type: String, maxlength: 335, required: [true, "Description is required"] },
+    fullDescription: { type: String, required: true },
     price: { type: String, required: [true, "Price is required"] },
     rooms: { type: String, required: [true, "Number of rooms is required"], enum: ["1" ,"2", "3"] },
     photoURL: { type: String },
@@ -13,7 +14,6 @@ const FlatsSchema = new Schema(
     wardrobe: { type: Boolean, required: true },
     bathroom: { type: String, enum: ["1", "2", "3"], required: true },
     airConditioner: { type: String, enum: ["1", "2"," 3"], required: true },
-    fullDescription: { type: String, required: true },
     district: { 
       type: String, 
       enum: [
@@ -43,6 +43,7 @@ const Flat = model("flates", FlatsSchema);
 const createFlatSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string().required(),
+  fullDescription: Joi.string().required(),
   price: Joi.string().required(),
   rooms: Joi.string().valid("1", "2", "3").required(),
   animals: Joi.boolean().required(),
@@ -50,7 +51,6 @@ const createFlatSchema = Joi.object({
   wardrobe: Joi.boolean().required(),
   bathroom: Joi.string().valid("1", "2","3").required(),
   airConditioner: Joi.string().valid("1"," 2", "3").required(),
-  fullDescription: Joi.string().required(),
   district: Joi.string().valid(
     "Дарницький", "Оболонський", "Печерський", "Шевченківський", 
     "Голосіївський", "Деснянський", "Дніпровський"
@@ -63,6 +63,7 @@ const createFlatSchema = Joi.object({
 const updateFlateSchema = Joi.object({
   title: Joi.string(),
   description: Joi.string(),
+  fullDescription: Joi.string(),
   price: Joi.string(),
   rooms: Joi.string().valid("1", "2", "3"),
   animals: Joi.boolean(),

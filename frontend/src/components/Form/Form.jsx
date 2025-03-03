@@ -84,6 +84,7 @@ const flatSchema = Yup.object().shape({
     .trim()
     .max(335, "Опис має бути до 335 символів")
     .required("Опис є обовʼязковим"),
+    fullDescription: Yup.string().trim(),
   price: Yup.number()
     .typeError("Ціна має бути числом")
     .positive("Ціна має бути додатною")
@@ -91,12 +92,11 @@ const flatSchema = Yup.object().shape({
   rooms: Yup.number()
     .oneOf([1, 2, 3], "Кількість кімнат може бути лише 1, 2 або 3")
     .required("Кількість кімнат є обовʼязковою"),
-    etsAllowed: Yup.boolean(),
+    petsAllowed: Yup.boolean(),
   heatingType: Yup.string().oneOf(["газове", "електричне", "центральне"], "Оберіть тип опалення"),
   walkInCloset: Yup.boolean(),
   bathrooms: Yup.number().oneOf([1, 2, 3], "Кількість ванних кімнат може бути лише 1, 2 або 3"),
   airConditioners: Yup.number().oneOf([1, 2, 3], "Кількість кондиціонерів може бути лише 1, 2 або 3"),
-  fullDescription: Yup.string().trim(),
   district: Yup.string().oneOf(["Дарницький", "Оболонський", "Печерський", "Шевченківський", "Голосіївський", "Деснянський", "Дніпровський"], "Оберіть район"),
   parkingSpace: Yup.boolean(),
   floor: Yup.number(),
@@ -131,6 +131,13 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
         <Input id="description" name="description" />
         <ErrorMessage
           name="description"
+          component="div"
+          style={{ color: "red" }}
+        />
+         <label htmlFor="fullDescription">Опис</label>
+        <Input id="fullDescription" name="fullDescription" />
+        <ErrorMessage
+          name="fullDescription"
           component="div"
           style={{ color: "red" }}
         />
