@@ -46,6 +46,7 @@ const createFlatSchema = Joi.object({
   fullDescription: Joi.string().required(),
   price: Joi.string().required(),
   rooms: Joi.string().valid("1", "2", "3").required(),
+  photoURL: Joi.string,
   animals: Joi.boolean().required(),
   gasEquipment: Joi.string().valid("electric", "gas", "central").required(),
   wardrobe: Joi.boolean().required(),

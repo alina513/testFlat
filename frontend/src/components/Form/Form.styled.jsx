@@ -37,8 +37,8 @@ export const Input = styled(Field)`
   border-radius: 5px;
   border: 2px solid #124a1e;
 `;
- export const  Select = styled(Field)`
+ export const  Select = styled.select`
  `
 
- export const Checkbox = styled(Field)`
+ export const Checkbox = styled.input`
  `

@@ -11,13 +11,13 @@ import {
   Description,
   General,
   Wrapper,
-  Button
+  Button,
 } from "./Flat.styled";
 
 export const Flat = ({ value }) => {
   const { title, description, rooms, _id, price, photoURL } = value;
   const baseUrl = "https://testflat-backend.onrender.com";
-  const fullPhotoUrl = `${baseUrl}/${photoURL}`
+  const fullPhotoUrl = `${baseUrl}/${photoURL}`;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { updateStatus } = useFlatsState();
   const dispatch = useDispatch();
@@ -34,18 +34,18 @@ export const Flat = ({ value }) => {
   const defaultInitialValues = {
     title: title || "",
     description: description || "",
+    fullDescription: "",
     price: price || 0,
     rooms: rooms || 1,
-    petsAllowed: false,
-  heatingType: "",
-  walkInCloset: false,
-  bathrooms: "",
-  airConditioners: "",
-  fullDescription: "",
-  district: "",
-  parkingSpace: false,
-  floor: 0,
-  maxPeople: 0,
+   animals: false,
+    heatingType: "",
+    walkInCloset: false,
+    bathrooms: "",
+    airConditioners: "",
+    district: "",
+    parkingSpace: false,
+    floor: 0,
+    maxPeople: 0,
   };
 
   useEffect(() => {
@@ -59,7 +59,11 @@ export const Flat = ({ value }) => {
       <Container>
         <Title>{title}</Title>
         <Wrapper>
-          <img width="100" alt="flat" src={photoURL ? fullPhotoUrl : flatImage} />
+          <img
+            width="100"
+            alt="flat"
+            src={photoURL ? fullPhotoUrl : flatImage}
+          />
           <div>
             <Description>{description}</Description>
             <General>Кімнат:{rooms}</General>
