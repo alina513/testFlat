@@ -15,7 +15,24 @@ import {
 } from "./Flat.styled";
 
 export const Flat = ({ value }) => {
-  const { title, description, rooms, _id, price, photoURL } = value;
+  const {
+    title,
+    description,
+    rooms,
+    _id,
+    price,
+    photoURL,
+    animals,
+    fullDescription,
+    bathroom,
+    airConditioner,
+    floor,
+    maxPeople,
+    wardrobe,
+    gasEquipment,
+    parking,
+    district,
+  } = value;
   const baseUrl = "https://testflat-backend.onrender.com";
   const fullPhotoUrl = `${baseUrl}/${photoURL}`;
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,18 +51,18 @@ export const Flat = ({ value }) => {
   const defaultInitialValues = {
     title: title || "",
     description: description || "",
-    fullDescription: "",
-    price: price || 0,
-    rooms: rooms || 1,
-   animals: false,
-   gasEquipment: "",
-   wardrobe: false,
-    bathroom: "",
-    airConditioner: "",
-    district: "",
-    parkingSpace: false,
-    floor: 0,
-    maxPeople: 0,
+    fullDescription: fullDescription || "",
+    price: price|| "",
+    rooms: rooms || "",
+    animals: animals || false,
+    gasEquipment: gasEquipment || "",
+    wardrobe: wardrobe || false,
+    bathroom: bathroom || "",
+    airConditioner: airConditioner||  "",
+    district: district ||  "",
+    parking: parking ||  false,
+    floor: floor || "",
+    maxPeople: maxPeople || "",
   };
 
   useEffect(() => {

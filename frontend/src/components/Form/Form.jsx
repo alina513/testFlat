@@ -129,7 +129,6 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
       dispatch(updateFlat({ id, ...values }));
     } else {
       dispatch(addFlat(values));
-      console.log(values);
     }
     actions.resetForm();
   };
@@ -140,7 +139,6 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
       validationSchema={flatSchema}
       onSubmit={handleSubmit}
     >
-   
       <FormWrapper>
         <label htmlFor="title">Заголовок</label>
         <Input id="title" name="title" />
@@ -154,7 +152,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
           style={{ color: "red" }}
         />
         <label htmlFor="fullDescription">Опис повний</label>
-        <Input id="fullDescription" name="fullDescription"  />
+        <Input id="fullDescription" name="fullDescription" />
         <ErrorMessage
           name="fullDescription"
           component="div"
@@ -166,7 +164,12 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
         <ErrorMessage name="price" component="div" style={{ color: "red" }} />
 
         <label htmlFor="rooms">Кількість кімнат</label>
-        <Input id="rooms" name="rooms" />
+        <Field id="rooms" name="rooms" as="select">
+          <option value="">Оберіть...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </Field>
         <ErrorMessage name="rooms" component="div" style={{ color: "red" }} />
 
         <label>
@@ -245,7 +248,7 @@ export const FlatForm = ({ initialValues, isEditMode, id }) => {
         <ErrorMessage name="floor" component="div" style={{ color: "red" }} />
 
         <label htmlFor="maxPeople">Максимальна кількість мешканців</label>
-        <Field id="maxPeople" name="maxPeople" as="input"/>
+        <Field id="maxPeople" name="maxPeople" as="input" />
         <ErrorMessage
           name="maxPeople"
           component="div"

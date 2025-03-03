@@ -42,7 +42,6 @@ export const addFlat = createAsyncThunk(
     thunkAPI
   ) => {
     try {
-      console.log(fields)
       const response = await axios.post("/flats", fields);
       return response.data;
     } catch (e) {
