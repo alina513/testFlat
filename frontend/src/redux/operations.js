@@ -38,11 +38,11 @@ export const fetchFlatById = createAsyncThunk(
 
 export const addFlat = createAsyncThunk(
   "flats/addflats",
-  async (
-    {...fields},
+  async (fields,
     thunkAPI
   ) => {
     try {
+      console.log(fields)
       const response = await axios.post("/flats", fields);
       return response.data;
     } catch (e) {

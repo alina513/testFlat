@@ -10,7 +10,7 @@ const FlatsSchema = new Schema(
     rooms: { type: String, required: [true, "Number of rooms is required"], enum: ["1" ,"2", "3"] },
     photoURL: { type: String },
     animals: { type: Boolean, required: true },
-    gasEquipment: { type: String, enum: ["electric", "gas", "central"], required: true },
+    gasEquipment: { type: String, enum: ["газове", "електричне", "центральне"] ,required: true },
     wardrobe: { type: Boolean, required: true },
     bathroom: { type: String, enum: ["1", "2", "3"], required: true },
     airConditioner: { type: String, enum: ["1", "2"," 3"], required: true },
