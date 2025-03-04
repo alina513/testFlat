@@ -5,6 +5,7 @@ import { ModalGeneral } from "../Modal/Modal";
 import { FlatForm } from "../Form/Form";
 import { useFlatsState } from "../../redux/selectors";
 import flatImage from "../../assets/flat.jpg";
+import { AddPhotoInput } from "../AddPhoto/AddPhoto";
 import {
   Container,
   Title,
@@ -91,6 +92,7 @@ export const Flat = ({ value }) => {
         <Button onClick={openEditModal}>Редагувати</Button>
       </Container>
       <ModalGeneral isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <AddPhotoInput id={_id}/>
         <FlatForm
           initialValues={defaultInitialValues}
           isEditMode={isEditForm}

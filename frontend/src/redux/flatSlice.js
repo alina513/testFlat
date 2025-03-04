@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchFlats, addFlat, deleteFlat, updateFlat, fetchFlatById } from "./operations";
+import { fetchFlats, addFlat, deleteFlat, updateFlat, fetchFlatById, addPhoto } from "./operations";
 
 const flatsInitialState = {
   items: [],
@@ -80,6 +80,25 @@ const flatsSlice = createSlice({
         }
       })
       .addCase(updateFlat.rejected, (state, action) => {
+        state.updateStatus = "error";
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(addPhoto.pending, (state) => {
+        state.updateStatus = "loading";
+        state.isLoading = true;
+      })
+      .addCase(addPhoto.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.items.findIndex(
+          (flat) => flat._id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index].photoURL = action.payload.photoURL;
+        }
+      })
+      .addCase(addPhoto.rejected, (state, action) => {
         state.updateStatus = "error";
         state.isLoading = false;
         state.error = action.payload;

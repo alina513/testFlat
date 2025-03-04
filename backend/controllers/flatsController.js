@@ -83,8 +83,11 @@ const updatePhoto = async(req, res) => {
   const photoURL = path.join("flatPhotos", fileName);
   await Flat.findByIdAndUpdate(id, {photoURL});
   res.json({
-      photoURL,})
+      photoURL:photoURL,
+    id: id})
   }
+
+  
   const addContactForm = async (req, res) => {
     try {
       const { id } = req.params;
